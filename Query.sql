@@ -18,7 +18,7 @@ CREATE TABLE course(
 
 CREATE TABLE registration(
     sid INT NOT NULL,
-    cid varchar(8) NOT NULL PRIMARY KEY ,
+    cid varchar(8) NOT NULL ,
     semester varchar(5),
     midterm INT NOT NULL CHECK (midterm BETWEEN 0.1 AND 10),
     finalterm INT NOT NULL CHECK (finalterm BETWEEN 0.1 AND 10),
@@ -27,7 +27,8 @@ CREATE TABLE registration(
                         ON UPDATE CASCADE,
     CONSTRAINT FK_cid FOREIGN KEY (cid) REFERENCES course(cid)
                          ON DELETE CASCADE
-                         ON UPDATE CASCADE
+                         ON UPDATE CASCADE,
+    PRIMARY KEY(sid,cid,semester)
 );
 
 INSERT INTO student(sid, name,address,city,dob,gender) VALUES
@@ -59,7 +60,7 @@ INSERT INTO registration (sid, cid, semester, midterm, finalterm) VALUES
 (202410002, 'IT3290', '20231', 7.5, 8.5),
 (202410003, 'IT3160', '20231', 6.0, 7.0),
 (202410004, 'IT2030', '20232', 9.0, 8.0),
-(202410005, 'MI1134', '20232', 5.5, 6.5),
+(202410001, 'IT3292', '20232', 5.5, 6.5),
 (202410006, 'PE2501', '20231', 10.0, 10.0),
 (202410007, 'IT3283', '20232', 7.0, 7.5),
 (202410008, 'IT3230', '20232', 8.5, 9.0),
